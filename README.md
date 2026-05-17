@@ -1,133 +1,592 @@
-# Exploring Interactive Phylogenies with Auspice (Nextstrain Tutorial)
+# 🧬 Phylogenetic Analysis of Kinesin Motor Proteins using Biopython and RAxML-NG
+---
 
-## Overview
+# Introduction
+Kinesins are a large and diverse family of ATP-dependent motor proteins found in all eukaryotic organisms. They play a fundamental role in intracellular transport by moving along microtubule filaments within the cell.
 
-Auspice is an interactive web-based visualization tool developed as part of the Nextstrain project. It is designed to help researchers explore and interpret phylogenetic trees along with associated metadata such as geographic location, sampling time, and genetic mutations. Instead of viewing static evolutionary trees, Auspice allows dynamic exploration of viral evolution in real time. In this tutorial, we analyze a subsample of Zika virus sequences to understand how viral evolution, mutation patterns, and geographic spread can be visualized and interpreted using this platform.
-
-The main strength of Auspice is that it integrates three important biological perspectives into a single interface: evolutionary relationships (phylogeny), spatial movement (map), and genetic variation (diversity panel). This combination allows researchers to study how viruses evolve over time and how they spread across populations and regions.
+These proteins function by converting chemical energy from ATP hydrolysis into mechanical motion, enabling directed transport of cellular cargo.
 
 ---
 
-## Interface Layout
+# Biological Functions of Kinesins
 
-When the Zika dataset is opened in Auspice, the screen is divided into three synchronized panels that work together.
+Kinesins are involved in several essential cellular processes, including:
 
-<img width="600" height="700" alt="a1" src="https://github.com/user-attachments/assets/112ae4bc-a08f-42ca-9ff6-656ada544e3e" />
-
-
-The top-left panel displays the phylogenetic tree, which represents evolutionary relationships between viral samples. Each branch in the tree represents a lineage, and the structure of the tree shows how different viral strains are related through common ancestors.
-
-The top-right panel contains a geographic map that shows the locations where each viral sample was collected. This helps in understanding how the virus spreads across different regions and countries over time.
-
-The bottom panel is called the diversity panel. It shows the viral genome structure, including genes and mutation sites. It highlights how genetic variation is distributed across the genome and identifies regions that evolve more rapidly.
-
-All three panels are linked, meaning any interaction in one panel automatically updates the others.
+Vesicle transport between organelles
+Organelle positioning and movement
+Chromosome segregation during mitosis
+Formation of the mitotic spindle
+Regulation of cell division
+General intracellular trafficking
 
 ---
 
-## Phylogeny Panel (Evolutionary Tree)
+# Directionality of Movement
 
-The phylogeny panel is the central component of Auspice. It displays a time-resolved evolutionary tree where the horizontal axis represents time in years. Each sequence is placed according to its sampling date, and if a date is missing, it is estimated during analysis.
+Most kinesin proteins move toward the plus end of microtubules, facilitating outward transport from the cell center.
 
-The tree is colored based on metadata such as the country of origin. This allows researchers to visually identify geographic clustering of viral strains. For example, sequences from Brazil may appear in one color while those from other countries appear differently.
-
-
-<img width="596" height="544" alt="a2" src="https://github.com/user-attachments/assets/9c47f80c-0036-4bac-a07f-a4df62223630" />
-
-
-When hovering over branches, detailed information appears. This includes the number of descendant sequences from that branch, estimated divergence time, and mutations that occurred along that evolutionary path. For example, a mutation like M114V in the NS5 gene indicates that at amino acid position 114, methionine (M) changed to valine (V). This mutation is inherited by all descendant sequences of that branch.
-
-The tooltip also shows confidence intervals for estimated dates, which reflect uncertainty in evolutionary timing. Additionally, the color of the branch reflects the most likely geographic location, although uncertainty may be shown using blended colors.
-
-
-<img width="588" height="532" alt="a3" src="https://github.com/user-attachments/assets/b9072c6f-f042-46dc-b532-e4d4097cec0f" />
-
-
-<img width="1227" height="855" alt="a4" src="https://github.com/user-attachments/assets/6bf6003d-d650-4f3f-a719-857e0adca2a4" />
-
-
-
-Clicking on a branch allows zooming into a specific clade. When this happens, all other panels (map and diversity) automatically update to reflect only the selected subset of sequences. This makes it easier to study specific evolutionary clusters in detail.
-
-A reset option is available to return to the full tree view.
+However, specific families such as Kinesin-14 exhibit movement toward the minus end, demonstrating functional diversity within the kinesin superfamily.
 
 ---
 
-## Control Panel (Tree Customization)
+# Structural Organization of Kinesins
 
-The control panel on the left side provides multiple ways to modify the visualization.
+Kinesin proteins typically consist of multiple functional domains:
 
-A date range slider allows filtering sequences based on time. When adjusted, only sequences within the selected time range are displayed, and all linked panels update accordingly.
+Motor domain (ATPase activity center)
+ATP-binding pocket
+Microtubule-binding interface
+Coiled-coil stalk region (dimerization support)
+Cargo-binding domain (cargo specificity)
 
-<img width="894" height="540" alt="a5" src="https://github.com/user-attachments/assets/f3a6758e-074a-40f4-ad7d-a910a42138c3" />
-
-The “color by” option allows users to change how the tree is visually categorized. The phylogeny can be colored by country, region, author, sampling date, or genotype. This helps reveal patterns such as geographic clustering or mutation-specific grouping.
-
-The tree layout can also be changed. The rectangular layout is the default view, but radial and unrooted layouts are available for alternative perspectives. These layouts help visualize relationships in different structural formats.
-
-One of the most important visualization modes is the clock layout. In this view, divergence (number of mutations from the common ancestor) is plotted against sampling time. Ideally, sequences follow a near-linear pattern, and the slope of this line represents the evolutionary rate, meaning how quickly mutations accumulate per year.
-
-<img width="591" height="534" alt="a6" src="https://github.com/user-attachments/assets/99b6ddbd-2c83-4e77-ad0f-54cc821b5d42" />
-
-
-Another important option is branch length representation. In divergence mode, branch length represents the number of mutations rather than time, allowing direct comparison of genetic differences between sequences.
 
 ---
 
-## Map Panel (Geographic Spread)
+#Importance of Phylogenetic Analysis
 
-The map panel shows the geographic distribution of viral samples. It updates dynamically based on selections made in the phylogeny panel.
+Phylogenetic analysis allows researchers to investigate the evolutionary history of kinesin proteins and understand:
 
-A play button allows users to animate viral spread over time. This animation shows how the virus moves across regions, helping visualize transmission pathways and outbreak progression.
-
-The map resolution can be adjusted to show either fine-scale locations or broader regional groupings. For example, switching to region-level resolution simplifies the view and highlights large-scale movement patterns.
-
-However, it is important to note that geographic reconstructions are based on computational models. These predictions depend heavily on sampling density, available metadata, and evolutionary assumptions. Therefore, while they are useful for visualization, they should not be interpreted as exact transmission routes.
-
----
-
-## Diversity Panel (Genomic Variation)
-
-The diversity panel provides a genome-wide view of mutations across the viral sequences. It helps identify which parts of the genome evolve quickly and which remain conserved.
-
-<img width="1221" height="300" alt="a7" src="https://github.com/user-attachments/assets/2de9a2c6-6d6b-43ea-9fc1-f83bd0abda8e" />
-
-The top section of the panel shows mutation variability, which can be represented in two ways: entropy and events. Entropy measures how variable a position is across all sequences, while events count the number of mutation occurrences at that position. High entropy indicates strong variation and possible evolutionary pressure.
-
-Users can switch between amino acid (AA) and nucleotide (NT) views. The amino acid view shows changes at the protein level, while the nucleotide view shows changes at the raw genetic level. Typically, the nucleotide view shows more mutations because many nucleotide changes do not alter the amino acid sequence due to genetic code redundancy.
-
-<img width="1221" height="300" alt="a8" src="https://github.com/user-attachments/assets/993265b8-e4a9-4161-ba4e-59625c17bf15" />
-
-Clicking on a mutation site highlights that position and zooms into the corresponding gene region. For example, selecting a high-entropy site may zoom into the NS1 gene and show how mutations are distributed in that region. The phylogenetic tree also updates to reflect variation at that site.
+Evolutionary divergence among kinesin families
+Functional specialization of motor proteins
+Conservation of catalytic and ATP-binding residues
+Evolution of directional movement mechanisms
+Relationships among kinesin subfamilies
 
 ---
 
-## Genotype-Based Analysis
+# Objectives
 
-Auspice allows users to color the phylogenetic tree based on specific genetic positions or genes. For example, selecting genotype mode for the NS1 gene enables visualization of amino acid variation at specific positions such as 324. At this site, different sequences may show different amino acids such as arginine (R), tryptophan (W), or glutamine (Q), indicating evolutionary divergence.
+The primary goals of this study include:
 
-<img width="1223" height="303" alt="a10" src="https://github.com/user-attachments/assets/46c015ac-89c8-45ee-b0b3-6ca96a66bd74" />
-
-
-Similarly, in the NS5 gene, mutations can be observed at positions like 322 and 878. These mutations can be tracked along branches of the phylogenetic tree to understand how they spread across lineages.
-
-<img width="855" height="523" alt="a11" src="https://github.com/user-attachments/assets/3fa8be91-2cec-4109-9257-c4c1ff463d52" />
-
-When switching to nucleotide mode, even more variation becomes visible because multiple nucleotide changes may exist without affecting amino acids.
-
-<img width="597" height="387" alt="a12" src="https://github.com/user-attachments/assets/2c80431c-2b43-4bc8-9a33-38e7891199f7" />
-
-Auspice also supports multi-site genotype coloring. For example, selecting positions such as 3501, 3972, and 6966 simultaneously allows visualization of combined mutation patterns across the genome. This helps in identifying complex evolutionary signatures.
-
-<img width="863" height="533" alt="a13" src="https://github.com/user-attachments/assets/98cdadcc-3720-4b78-835d-3220f4c39824" />
+Retrieval of homologous kinesin protein sequences from biological databases
+Identification of sequence similarity using BLASTP via Biopython
+Construction of multiple sequence alignment (MSA) using MAFFT
+Refinement of alignment through trimming of low-quality regions
+Removal of redundant or duplicate sequences
+Selection of the best evolutionary substitution model using ModelTest-NG
+Construction of a phylogenetic tree using RAxML-NG
+Validation of phylogenetic topology using bootstrap analysis
+Reconstruction of ancestral kinesin protein sequences
+Investigation of evolutionary conservation and divergence patterns
 
 ---
 
-## Conclusion
+# Materials and Software
 
-Auspice provides a powerful and integrated platform for studying viral evolution by combining phylogenetic trees, geographic mapping, and genomic diversity analysis into a single interactive system. Through the Zika virus tutorial, we can observe how viruses evolve over time, how mutations accumulate across genomes, and how these changes correlate with geographic spread.
+| Tool / Software | Purpose |
+|----------------|--------|
+| Python | Core programming environment for pipeline execution |
+| Google Colab | Cloud-based computational platform for reproducibility |
+| Biopython | Sequence retrieval, parsing, and BLAST operations |
+| BLASTP | Identification of homologous protein sequences |
+| MAFFT | High-quality multiple sequence alignment |
+| ModelTest-NG | Selection of optimal evolutionary substitution model |
+| RAxML-NG | Maximum likelihood phylogenetic tree inference |
+| Matplotlib | Visualization of phylogenetic trees |
+| Bio.Phylo | Phylogenetic tree parsing and analysis |
 
 ---
 
+# PART 0 — Installation of Required Software
 
-The tool not only helps visualize evolutionary relationships but also provides insights into mutation hotspots, evolutionary rates, and transmission dynamics. By linking genetic data with time and location, Auspice plays an important role in modern genomic epidemiology and helps researchers better understand the behavior of emerging viral outbreaks.
+Installing Biopython
+
+```python
+!pip install biopython
+import os
+import sys
+import Bio
+
+```
+
+Biopython is a widely used bioinformatics library that provides essential computational tools for biological sequence analysis. It supports:
+
+Retrieval of sequences from biological databases such as NCBI
+FASTA file parsing and manipulation
+Execution and parsing of BLAST searches
+Phylogenetic tree handling and visualization
+
+---
+
+# Installing MAFFT
+```python
+!apt-get install -qq -y mafft
+!mafft --help
+```
+
+MAFFT (Multiple Alignment using Fast Fourier Transform) is a high-performance tool used for constructing multiple sequence alignments of protein and nucleotide sequences.
+
+It is particularly effective for:
+
+Large-scale sequence datasets
+Detecting conserved functional regions
+Identifying evolutionary relationships between sequences
+
+---
+
+# Installation of Conda, ModelTest-NG, and RAxML-NG
+
+```python
+import os
+
+!wget -q https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O /tmp/miniforge.sh
+!bash /tmp/miniforge.sh -b -p /usr/local/miniforge
+!rm /tmp/miniforge.sh
+
+os.environ["PATH"] = "/usr/local/miniforge/bin:" + os.environ["PATH"]
+
+!conda --version
+!conda config --set always_yes yes --set changeps1 no
+
+!conda install -c conda-forge mamba
+!conda install -c bioconda raxml-ng modeltest-ng --yes
+```
+
+Functional Roles:
+ModelTest-NG: Evaluates multiple substitution models to determine the best evolutionary fit
+RAxML-NG: Performs maximum likelihood-based phylogenetic tree reconstruction.
+
+---
+
+# PART I — Retrieval of Kinesin Protein Sequence
+Target Protein Selection
+
+The selected query protein for this analysis is:
+
+Human Kinesin Family Member 5B (KIF5B)
+Structural reference: PDB ID: 3KIN_A
+
+---
+
+# Sequence Retrieval from NCBI
+```python
+from Bio import SeqIO, Entrez
+
+Entrez.email = "your_email@example.com"
+
+temp = Entrez.efetch(
+    db="protein",
+    rettype="fasta",
+    id="3KIN_A"
+)
+
+aaseq_out = open("kinesin_motor.fasta",'w')
+
+aaseq = SeqIO.read(temp, format="fasta")
+
+SeqIO.write(aaseq, aaseq_out, "fasta")
+
+temp.close()
+aaseq_out.close()
+```
+
+This step retrieves the kinesin protein sequence from the NCBI database and stores it in FASTA format for downstream computational analysis.
+
+---
+
+# Sequence Properties
+```python
+print(len(aaseq))
+print(aaseq.description)
+print(aaseq.id)
+print(aaseq.seq)
+```
+
+Observations:
+Sequence length: 238 amino acids
+Protein description: Kinesin heavy chain motor domain
+Sequence corresponds to a highly conserved motor region
+Contains ATP-binding and microtubule interaction motifs
+
+---
+
+# PART II — BLASTP Homology Search
+
+```python
+from Bio.Blast import NCBIWWW
+
+result_handle = NCBIWWW.qblast(
+    "blastp",
+    "pdb",
+    aaseq.seq,
+    entrez_query='eukaryota[organism]'
+)
+```
+
+BLASTP is used to identify homologous protein sequences by comparing the query sequence against a structural protein database.
+
+Key Parameters:
+E-value: statistical significance of alignment
+Identity: percentage similarity between sequences
+Coverage: proportion of aligned region
+Alignment length: extent of matched region
+
+---
+
+# PART III — BLAST Result Parsing
+```python
+from Bio.Blast import NCBIXML
+
+blast_record = NCBIXML.read(result_handle)
+result_handle.close()
+```
+
+This step extracts alignment information from BLAST output for further filtering and analysis.
+
+---
+
+# PART IV — Filtering BLAST Hits
+
+```python
+PIDcut = 1.00
+
+for alignment in blast_record.alignments:
+
+    for hsp in alignment.hsps:
+
+        if (hsp.identities/hsp.align_length) <= PIDcut:
+
+            print("Accession:", alignment.hit_id)
+
+            print("Length:", alignment.length)
+
+            print("Alignment Length:", hsp.align_length)
+
+            print("E-value:", hsp.expect)
+
+            print("Sequence Identity [%]:",
+                  "{:.2f}".format(
+                      100*hsp.identities/hsp.align_length
+                  ))
+
+            print("Coverage [%]:",
+                  "{:.2f}".format(
+                      100*sum(c.isalpha() for c in hsp.query)/len(aaseq)
+                  ))
+
+            print()
+```
+
+This step removes redundant or low-quality homologs to improve downstream phylogenetic accuracy.
+
+# BLAST Results including Coverage and Identity
+Accession: pdb|5GSZ|A | Length: 353 | Alignment Length: 257 | E-value: 9.50998e-43 | Sequence Identity [%]: 34.24 | Coverage [%]: 100.00
+Accession: pdb|5GSY|K | Length: 360 | Alignment Length: 257 | E-value: 1.10681e-42 | Sequence Identity [%]: 34.24 | Coverage [%]: 100.00
+Accession: pdb|7A40|A | Length: 346 | Alignment Length: 240 | E-value: 2.35871e-42 | Sequence Identity [%]: 39.58 | Coverage [%]: 97.06
+Accession: pdb|7A3Z|A | Length: 372 | Alignment Length: 240 | E-value: 4.66892e-42 | Sequence Identity [%]: 39.58 | Coverage [%]: 97.06
+Accession: pdb|3B6V|A | Length: 395 | Alignment Length: 247 | E-value: 2.19182e-41 | Sequence Identity [%]: 36.03 | Coverage [%]: 98.32
+Accession: pdb|4AQV|C | Length: 373 | Alignment Length: 262 | E-value: 4.1622e-41 | Sequence Identity [%]: 39.69 | Coverage [%]: 97.48
+Accession: pdb|5ZBS|A | Length: 375 | Alignment Length: 259 | E-value: 4.33382e-41 | Sequence Identity [%]: 35.91 | Coverage [%]: 97.06
+Accession: pdb|6A1Z|A | Length: 395 | Alignment Length: 263 | E-value: 4.43793e-41 | Sequence Identity [%]: 35.36 | Coverage [%]: 98.74
+Overall coverage values are consistently high (≈97–100%), indicating strong and complete alignment across the kinesin motor domain.
+
+---
+
+# PART V — Retrieval of Homologous Sequences
+
+```python
+Entrez.email = "your_email@example.com"
+
+with open("kinesin_sequences.fasta", "a") as allhits_out:
+
+    for alignment in blast_record.alignments[:20]:
+
+        for hsp in alignment.hsps:
+
+            if(hsp.identities/len(hsp.match)) <= PIDcut:
+
+                print("Fetching:", alignment.hit_id)
+
+                fetch = Entrez.efetch(
+                    db="protein",
+                    id=alignment.hit_id,
+                    rettype="fasta"
+                )
+
+                allhits_seqs = SeqIO.read(fetch, format="fasta")
+
+                SeqIO.write(
+                    allhits_seqs,
+                    allhits_out,
+                    "fasta"
+                )
+
+                fetch.close()
+
+allhits_out.close()
+```
+
+Top-ranking BLAST hits are used to fetch homologous kinesin sequences from NCBI and compile them into a single dataset for alignment.
+
+---
+
+# PART VI — Multiple Sequence Alignment (MAFFT)
+
+```python
+!mafft kinesin_sequences.fasta > aligned_kinesin.fasta
+```
+
+Multiple sequence alignment is performed to identify:
+
+Conserved amino acid residues
+Functional protein motifs
+Evolutionary insertion/deletion events
+Structural conservation across homologs
+---
+
+# PART VII — Alignment Visualization and Interpretation
+```python
+from Bio import AlignIO
+
+aln = AlignIO.read("aligned_kinesin.fasta", "fasta")
+
+print(aln)
+```
+
+The aligned dataset reveals:
+
+Strong conservation of ATP-binding motifs
+Highly conserved motor domain architecture
+Variable loop and terminal regions
+Presence of experimental tags in some sequences
+---
+
+# Aligned Sequences
+
+```python
+------------------------ADP-AECSIKVMCRFRPLNE...--- pdb|2KIN|A
+-----------------------MADP-AECSIKVMCRFRPLNE...--- pdb|3J6H|K
+-----------------------MADP-AECSIKVMCRFRPLNE...--- pdb|3WRD|A
+-----------------------MAETNNECSIKVLCRFRPLNQ...--- pdb|4UXT|C
+-----------------------MAETNNECSIKVLCRFRPLNQ...--- pdb|9T17|C
+-----------------------MAETNNECSIKVLCRFRPLNQ...--- pdb|9UMM|A
+-----------------------MADL-AECNIKVMCRFRPLNE...--- pdb|1MKJ|A
+-----------------------MADP-AECNIKVMCRFRPLNE...--- pdb|4ATX|C
+-----------------------MADL-AECNIKVMCRFRPLNE...--- pdb|9L7M|K
+-----------------------MADL-AECNIKVMCRFRPLNE...--- pdb|1BG2|A
+-----------------------MADL-AECNIKVMCRFRPLNE...SPT pdb|9GNQ|K
+MGSSHHHHHHSSGLVPRGSHMASMADL-AECNIKVMCRFRPLNE...--- pdb|8IXA|S
+-----------------------MADL-AESNIKVMCRFRPLNE...--- pdb|3J8X|K
+-----------------------MADL-AESNIKVMCRFRPLNE...--- pdb|4HNA|K
+-----------------------MADL-AESNIKVMCRFRPLNE...--- pdb|4LNU|K
+---MHHHHH--------------HADL-AESNIKVMCRFRPLNE...--- pdb|9L78|A
+-----------------------MADL-AESNIKVMCRFRPLNE...--- pdb|9L7E|A
+-----------------------MADL-AESNIKVMCRFRPLNE...--- pdb|5LT3|A
+...
+---MHHHHH--------------HADL-AESNIKVMCRFRPLNE...--- pdb|9L6K|A
+```
+
+The multiple sequence alignment revealed several important evolutionary and structural characteristics of kinesin motor proteins:
+
+- ATP-binding motifs remained highly conserved across nearly all homologous sequences  
+- Residues involved in microtubule interaction showed strong sequence conservation  
+- The central motor domain exhibited substantial evolutionary stability among kinesin proteins  
+- Loop regions and terminal segments displayed greater sequence variability and insertion/deletion events  
+- Certain sequences contained experimentally introduced affinity tags, including histidine-rich tags such as `MHHHHH`  
+- Overall alignment patterns demonstrated extensive conservation within the kinesin motor protein family
+  
+---
+
+ # PART VIII — Alignment Trimming
+
+ ```python
+from Bio import AlignIO
+from Bio import SeqIO
+
+aln = AlignIO.read("aligned_kinesin.fasta", "fasta")
+
+for fcol in range(aln.get_alignment_length()):
+
+    if "-" not in aln[:, fcol]:
+        position1 = fcol
+        break
+
+for lcol in reversed(range(aln.get_alignment_length())):
+
+    if "-" not in aln[:, lcol]:
+        position2 = lcol + 1
+        break
+
+with open("aligned_trimmed_kinesin.fasta", "w") as handle:
+
+    SeqIO.write(
+        aln[:, position1:position2],
+        handle,
+        "fasta"
+    )
+```
+
+Low-quality and gap-rich regions are removed to improve phylogenetic accuracy and reduce noise in evolutionary inference.
+
+---
+
+# PART IX — Duplicate Sequence Removal
+```python
+from Bio import AlignIO
+from Bio import SeqIO
+
+aln = AlignIO.read("aligned_kinesin.fasta", "fasta")
+
+for fcol in range(aln.get_alignment_length()):
+
+    if "-" not in aln[:, fcol]:
+        position1 = fcol
+        break
+
+for lcol in reversed(range(aln.get_alignment_length())):
+
+    if "-" not in aln[:, lcol]:
+        position2 = lcol + 1
+        break
+
+with open("aligned_trimmed_kinesin.fasta", "w") as handle:
+
+    SeqIO.write(
+        aln[:, position1:position2],
+        handle,
+        "fasta"
+    )
+```
+
+Redundant sequences are removed to prevent:
+
+Bias in branch length estimation
+Artificial clustering of clades
+Distortion of evolutionary relationships
+
+---
+
+ # PART X — Model Selection (ModelTest-NG)
+
+ ```python
+!modeltest-ng -i clear_aligned_trimmed_kinesin.fasta -d aa
+```
+
+The best-fit evolutionary model identified:
+
+ LG + I + G4
+
+Where:
+
+LG → amino acid substitution model
+I → invariant sites
+G4 → gamma-distributed rate variation
+
+---
+
+# PART XI — Phylogenetic Tree Construction (RAxML-NG)
+ ```python
+!raxml-ng \
+--msa clear_aligned_trimmed_kinesin.fasta \
+--model LG+I+G4 \
+--prefix KINESIN_TREE \
+--threads 2
+ ```
+
+
+A maximum likelihood phylogenetic tree is generated to infer evolutionary relationships among kinesin homologs.
+
+---
+
+ # PART XII — Tree Visualization
+ 
+ ```python
+from Bio import Phylo
+import matplotlib.pyplot as plt
+
+tree = Phylo.read(
+    "KINESIN_TREE.raxml.bestTree",
+    "newick"
+)
+
+fig, ax = plt.subplots(figsize=(12,8))
+
+Phylo.draw(tree, axes=ax)
+
+plt.show()
+ ```
+<img width="865" height="525" alt="tree 1" src="https://github.com/user-attachments/assets/c177974b-a934-4609-9122-2f482c576a7e" />
+
+Phylogenetic trees are visualized to interpret:
+
+Evolutionary clustering
+Lineage divergence
+Conserved ancestral relationships
+---
+
+# PART XIII — Bootstrap Analysis
+
+```python
+!raxml-ng \
+--bootstrap \
+--msa KINESIN_TREE.raxml.rba \
+--model LG+I+G4 \
+--prefix BOOTSTRAP \
+--threads 2 \
+--bs-tree 100
+```
+
+Bootstrap resampling is used to assess the reliability of phylogenetic branches:
+
+70% → strong support
+
+<50% → weak support
+
+<img width="865" height="525" alt="teeee2" src="https://github.com/user-attachments/assets/5f289ccf-a445-4ac2-a393-789de2df9bad" />
+
+
+---
+
+ # PART XIV — Ancestral Sequence Reconstruction
+
+ ```python
+tree = Phylo.read(
+    "ASR.raxml.ancestralTree",
+    "newick"
+)
+
+fig, ax = plt.subplots(figsize=(12,8))
+
+Phylo.draw(tree, axes=ax)
+
+plt.show()
+```
+<img width="865" height="525" alt="teee2" src="https://github.com/user-attachments/assets/a0612d83-ceb9-4401-bd8e-c2adabebb819" />
+
+
+Ancestral sequences are inferred at internal nodes to understand:
+
+Evolution of ATP-binding residues
+Early conservation of motor activity
+Functional constraints in kinesin evolution
+
+---
+
+# RESULTS SUMMARY
+Strong evolutionary conservation of kinesin motor domains
+Distinct phylogenetic clustering of kinesin subfamilies
+High confidence bootstrap-supported clades
+Functional conservation of ATP-binding regions
+Evolutionary divergence mainly in non-motor regions
+
+---
+
+# CONCLUSION
+
+This study presents a complete and reproducible computational workflow for the evolutionary analysis of kinesin motor proteins.
+
+The results demonstrate that kinesin motor domains are highly conserved across species, while peripheral regions show diversification associated with functional specialization.
+
+---
+
+# REFERENCES
+RAxML-NG Documentation
+MAFFT Algorithm (Katoh et al.)
+Biopython Documentation
+ModelTest-NG Manual
+NCBI BLAST Resources
+LG Substitution Model (Le & Gascuel)
+Protein Data Bank (PDB)
+Molecular Biology of the Cell / Campbell Biology
+
+---
