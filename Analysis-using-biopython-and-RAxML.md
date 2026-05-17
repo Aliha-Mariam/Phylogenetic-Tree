@@ -357,6 +357,7 @@ Phylo.draw(tree, axes=ax)
 
 plt.show()
 ```
+<img width="865" height="525" alt="B1" src="https://github.com/user-attachments/assets/61d78324-b62a-43cf-b1a1-f1c6e646cb54" />
 
 The tree displayed clear branching patterns and evolutionary clustering among Kinesin-14 homologs.
 
