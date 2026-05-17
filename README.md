@@ -332,6 +332,7 @@ Conserved amino acid residues
 Functional protein motifs
 Evolutionary insertion/deletion events
 Structural conservation across homologs
+
 ---
 
 # PART VII — Alignment Visualization and Interpretation
