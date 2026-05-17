@@ -1,4 +1,4 @@
-# 🧬 Exploring Interactive Phylogenies with Auspice (Nextstrain Tutorial)
+# Exploring Interactive Phylogenies with Auspice (Nextstrain Tutorial)
 
 ## Overview
 
