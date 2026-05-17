@@ -397,6 +397,7 @@ Phylo.draw(tree, axes=ax)
 
 plt.show()
 ```
+<img width="865" height="525" alt="B2" src="https://github.com/user-attachments/assets/0517d358-542b-4148-a0b4-df72cd5653e5" />
 
 Bootstrap-supported trees confirmed reliability of major evolutionary clades.
 
@@ -438,6 +439,8 @@ Phylo.draw(tree, axes=ax)
 
 plt.show()
 ```
+
+<img width="865" height="525" alt="B3" src="https://github.com/user-attachments/assets/8adc738d-58d2-49e0-b335-dc372d0e9b16" />
 
 The final ancestral tree revealed strongly supported evolutionary clusters and reliable phylogenetic topology.
 
